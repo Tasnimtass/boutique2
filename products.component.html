@@ -1,0 +1,18 @@
+<h1>{{title}}</h1>
+<div *ngFor = "let prod of produit" [ngClass]="{orange:!prod.stock}"><br>
+  <img [src]="prod.image" (mouseenter)="backfit(prod)" (mouseleave)="frontfit(prod)"> >
+  <div>
+    {{prod.nom}} prix : 
+    <span *ngIf="prod.solde != 0">
+      <s>{{prod.prix}}dt</s><div><span  style="color: green; background-color: rgb(143, 225, 143); width: 50%;">Solde : {{ prod.solde }} %</span><br><span style="color: rgb(46, 1, 1);background-color: rgb(216, 202, 202);" >Prix après réduction : :{{solde(prod)}}dt</span> </div>
+    </span>
+    <span *ngIf="prod.solde == 0">
+      {{prod.prix}}dt 
+    </span>
+  </div>
+   <button [disabled]="!prod.description" (click)="showalert(prod)" >details </button>
+   <br><br>
+   <div *ngIf="prod.stock==0" style="color: red; width: 50% " >non dispo</div>
+   <div *ngIf="prod.stock!=0" ><button value="">ajouter au panier</button></div>
+</div>
+<app-product-detail [msg]=msg *ngIf ="selectedPtoduct"[produit]=selectedPtoduct></app-product-detail>
